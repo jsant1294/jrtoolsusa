@@ -1,26 +1,136 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --red: #C41230;
+  --navy: #0A1628;
+  --cream: #F5F0E8;
+  --gold: #D4A017;
+  --steel: #2C3E50;
+  --mid: #6B7280;
+  --light: #E8E4DC;
+  --white: #FFFFFF;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Barlow', sans-serif;
+  background: var(--cream);
+  color: var(--navy);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  /* Hide desktop nav, show logo & CTA only */
+  header nav {
+    display: none !important;
+  }
+
+  header {
+    padding: 0 16px !important;
+  }
+
+  /* Hero section mobile responsive */
+  .hero-section {
+    min-height: 400px !important;
+  }
+
+  .hero-content {
+    padding: 40px 16px !important;
+  }
+
+  .hero-badge {
+    font-size: 12px !important;
+    margin-bottom: 12px !important;
+  }
+
+  .hero-headline {
+    font-size: 32px !important;
+    margin-bottom: 16px !important;
+  }
+
+  .hero-desc {
+    font-size: 14px !important;
+    margin-bottom: 24px !important;
+  }
+
+  /* Responsive footer */
+  footer {
+    padding: 32px 16px 16px !important;
+  }
+
+  footer > div > div > div {
+    padding: 0 !important;
+  }
+
+  /* Products page responsive */
+  .products-page {
+    padding: 32px 16px !important;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) !important;
+    gap: 16px !important;
+  }
+
+  /* Feature grid - 2 columns on mobile */
+  section:has(> div[style*="gridTemplateColumns: repeat(4"]) > div {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 16px !important;
+    padding: 32px 16px !important;
+  }
+
+  /* Responsive text sizes */
+  h1 {
+    font-size: 28px !important;
+  }
+
+  h2 {
+    font-size: 20px !important;
+  }
+
+  p {
+    font-size: 14px !important;
+  }
+
+  /* Hide horizontal scrolling */
+  main {
+    overflow-x: hidden !important;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    height: auto !important;
+    padding: 12px 8px !important;
+  }
+
+  header a:first-child {
+    flex: 1 !important;
+  }
+
+  .hero-headline {
+    font-size: 24px !important;
+  }
+
+  .hero-desc {
+    font-size: 12px !important;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)) !important;
+  }
+
+  h1 {
+    font-size: 22px !important;
+  }
 }
