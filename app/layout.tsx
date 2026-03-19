@@ -33,21 +33,33 @@ export default function RootLayout({
 
 function Nav() {
   return (
-    <header style={{
-      background: 'var(--white)',
-      borderBottom: '3px solid var(--red)',
-      padding: '0 32px',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      height: '64px',
-      position: 'sticky',
-      top: 0,
-      zIndex: 100,
-      flexWrap: 'wrap',
-    }}>
-      <a href="/" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <span style={{ fontSize: '28px' }}>🇺🇸</span>
+    <header className="sticky top-0 z-50 flex h-16 items-center justify-between px-8 bg-[#0A1628] border-b border-[#0A1628]/50 text-white">
+      {/* Logo */}
+      <a href="/" className="flex items-center gap-2 group">
+        <div className="flex h-8 w-8 items-center justify-center rounded bg-[#C41230] text-white font-bold transition-transform group-hover:scale-105">
+          JR
+        </div>
+        <span className="font-barlow-condensed text-xl font-bold uppercase tracking-wider text-white">
+          JRToolsUSA
+        </span>
+      </a>
+
+      {/* Desktop Links */}
+      <nav className="hidden md:flex items-center gap-8">
+        <a href="/products" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">Shop</a>
+        <a href="/products" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">Brands</a>
+        <a href="/products" className="bg-[#C41230] hover:bg-[#A00E26] text-white px-5 py-2 rounded text-sm font-bold uppercase tracking-wide transition-all">
+          Shop Now
+        </a>
+      </nav>
+
+      {/* Mobile Menu Icon (Placeholder) */}
+      <button className="md:hidden text-white">
+        <span className="text-2xl">☰</span>
+      </button>
+    </header>
+  )
+}
         <div>
           <div style={{
             fontFamily: "'Barlow Condensed', sans-serif",

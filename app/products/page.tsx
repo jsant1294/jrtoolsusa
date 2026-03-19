@@ -29,175 +29,131 @@ export default async function ProductsPage({
     : brand ? `${brand} Tools` : 'All Tools & Equipment'
 
   return (
-    <main style={{ background: 'var(--cream)', minHeight: '100vh' }}>
-      <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '40px 32px' }}>
+    <main className="bg-[#F5F0E8] min-h-screen py-10 px-4 md:px-8">
+      <div className="max-w-7xl mx-auto">
 
         {/* Header */}
-        <div style={{ marginBottom: '28px' }}>
-          <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--red)', marginBottom: '6px' }}>★ Shop Tools</div>
-          <div style={{ display: 'flex', alignItems: 'baseline', gap: '16px' }}>
-            <h1 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: '42px', fontWeight: 800, color: 'var(--navy)' }}>
+        <div className="mb-8">
+          <div className="text-xs font-bold tracking-[0.2em] uppercase text-[#C41230] mb-2">★ Shop Tools</div>
+          <div className="flex flex-wrap items-baseline gap-4">
+            <h1 className="font-barlow-condensed text-4xl md:text-5xl font-bold text-[#0A1628]">
               {activeTitle}
             </h1>
-            <span style={{ fontSize: '14px', color: 'var(--mid)' }}>{products?.length ?? 0} products</span>
+            <span className="text-sm text-gray-500 font-medium">{products?.length ?? 0} products</span>
           </div>
         </div>
 
-        {/* Search */}
-        <form method="GET" style={{ marginBottom: '20px' }}>
-          <div style={{ display: 'flex', maxWidth: '480px' }}>
-            <input
-              name="q"
-              defaultValue={q}
-              placeholder="Search by name or model number..."
-              style={{
-                flex: 1, height: '42px',
-                border: '1.5px solid var(--light)', borderRight: 'none',
-                padding: '0 16px', fontSize: '13px',
-                fontFamily: 'Barlow, sans-serif',
-                background: 'var(--white)', outline: 'none',
-                borderRadius: '3px 0 0 3px',
-              }}
-            />
-            <button type="submit" style={{
-              height: '42px', padding: '0 20px',
-              background: 'var(--navy)', color: 'var(--white)',
-              border: 'none', cursor: 'pointer',
-              fontFamily: "'Barlow Condensed', sans-serif",
-              fontSize: '12px', fontWeight: 700,
-              letterSpacing: '0.1em', textTransform: 'uppercase',
-              borderRadius: '0 3px 3px 0',
-            }}>Search</button>
-          </div>
-        </form>
+        {/* Search & Filter Bar */}
+        <div className="flex flex-col md:flex-row gap-6 mb-8 items-start md:items-end justify-between border-b border-gray-200 pb-8">
+          
+          {/* Search */}
+          <form method="GET" className="w-full max-w-md">
+            <div className="flex w-full">
+              <input
+                name="q"
+                defaultValue={q}
+                placeholder="Search by name or model number..."
+                className="flex-1 h-11 border border-gray-300 border-r-0 px-4 text-sm font-barlow bg-white outline-none focus:border-[#0A1628] transition-colors rounded-l-sm"
+              />
+              <button type="submit" className="h-11 px-6 bg-[#0A1628] text-white border-none cursor-pointer font-barlow-condensed text-sm font-bold tracking-widest uppercase rounded-r-sm hover:bg-[#C41230] transition-colors">
+                Search
+              </button>
+            </div>
+          </form>
 
-        {/* Brand filters */}
-        <div style={{ marginBottom: '12px' }}>
-          <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--mid)', marginBottom: '8px' }}>Shop by brand</div>
-          <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
-            <Link href="/products" style={{
-              padding: '6px 14px', borderRadius: '2px',
-              fontFamily: "'Barlow Condensed', sans-serif",
-              fontSize: '12px', fontWeight: 700, letterSpacing: '0.1em',
-              textTransform: 'uppercase', textDecoration: 'none',
-              background: !brand && !category ? 'var(--navy)' : 'var(--white)',
-              color: !brand && !category ? 'var(--white)' : 'var(--steel)',
-              border: '1px solid var(--light)',
-            }}>All</Link>
-            {BRANDS.map(b => (
-              <Link key={b} href={`/products?brand=${b}`} style={{
-                padding: '6px 14px', borderRadius: '2px',
-                fontFamily: "'Barlow Condensed', sans-serif",
-                fontSize: '12px', fontWeight: 700, letterSpacing: '0.1em',
-                textTransform: 'uppercase', textDecoration: 'none',
-                background: brand === b ? 'var(--navy)' : 'var(--white)',
-                color: brand === b ? 'var(--white)' : 'var(--steel)',
-                border: '1px solid var(--light)',
-              }}>{b}</Link>
-            ))}
-          </div>
-        </div>
-
-        {/* Category filters */}
-        <div style={{ marginBottom: '32px' }}>
-          <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--mid)', marginBottom: '8px' }}>Shop by category</div>
-          <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
-            {CATEGORIES.map(cat => (
-              <Link key={cat} href={`/products?category=${cat}`} style={{
-                padding: '5px 12px', borderRadius: '2px',
-                fontFamily: "'Barlow Condensed', sans-serif",
-                fontSize: '11px', fontWeight: 700, letterSpacing: '0.1em',
-                textTransform: 'uppercase', textDecoration: 'none',
-                background: category === cat ? 'var(--red)' : 'var(--cream)',
-                color: category === cat ? 'var(--white)' : 'var(--mid)',
-                border: `1px solid ${category === cat ? 'var(--red)' : 'var(--light)'}`,
-              }}>{cat}</Link>
-            ))}
+          {/* Filters */}
+          <div className="flex-1 w-full md:w-auto">
+             <div className="mb-4">
+               <div className="text-[10px] font-bold tracking-widest uppercase text-gray-500 mb-2">Shop by brand</div>
+               <div className="flex gap-2 flex-wrap">
+                  <Link href="/products" className={`px-3 py-1.5 rounded-sm font-barlow-condensed text-xs font-bold tracking-wider uppercase border transition-all ${!brand && !category ? 'bg-[#0A1628] text-white border-[#0A1628]' : 'bg-white text-gray-700 border-gray-300 hover:border-gray-400'}`}>
+                    All
+                  </Link>
+                  {BRANDS.map(b => (
+                    <Link key={b} href={`/products?brand=${b}`} className={`px-3 py-1.5 rounded-sm font-barlow-condensed text-xs font-bold tracking-wider uppercase border transition-all ${brand === b ? 'bg-[#0A1628] text-white border-[#0A1628]' : 'bg-white text-gray-700 border-gray-300 hover:border-gray-400'}`}>
+                      {b}
+                    </Link>
+                  ))}
+               </div>
+             </div>
+             
+             <div>
+               <div className="text-[10px] font-bold tracking-widest uppercase text-gray-500 mb-2">Shop by category</div>
+               <div className="flex gap-2 flex-wrap">
+                  {CATEGORIES.map(cat => (
+                    <Link key={cat} href={`/products?category=${cat}`} className={`px-3 py-1.5 rounded-sm font-barlow-condensed text-xs font-bold tracking-wider uppercase border transition-all ${category === cat ? 'bg-[#C41230] text-white border-[#C41230]' : 'bg-[#F5F0E8] text-gray-500 border-gray-300 hover:border-gray-400'}`}>
+                      {cat}
+                    </Link>
+                  ))}
+               </div>
+             </div>
           </div>
         </div>
 
         {/* Clear filters */}
         {(brand || category || q) && (
-          <div style={{ marginBottom: '20px' }}>
-            <Link href="/products" style={{
-              fontSize: '12px', color: 'var(--red)',
-              textDecoration: 'none', fontWeight: 600,
-            }}>✕ Clear filters</Link>
+          <div className="mb-6">
+            <Link href="/products" className="text-xs text-[#C41230] font-bold hover:underline">
+              ✕ Clear filters
+            </Link>
           </div>
         )}
 
         {/* Product Grid */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
-          gap: '16px',
-        }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {products?.map(p => (
-            <Link href={`/products/${p.slug}`} key={p.id} style={{ textDecoration: 'none', color: 'inherit' }}>
-              <div style={{
-                background: 'var(--white)',
-                borderRadius: '6px',
-                border: '1px solid #e8e4dc',
-                overflow: 'hidden',
-                height: '100%',
-                display: 'flex',
-                flexDirection: 'column',
-              }}>
+            <Link href={`/products/${p.slug}`} key={p.id} className="group block h-full">
+              <div className="bg-white rounded-lg border border-gray-200 overflow-hidden h-full flex flex-col transition-all duration-300 group-hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] group-hover:border-gray-300">
                 {/* Image */}
-                <div style={{
-                  height: '160px',
-                  background: '#f8f6f2',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  borderBottom: '1px solid #f0ede8',
-                }}>
+                <div className="h-48 bg-[#f8f6f2] flex items-center justify-center border-b border-gray-100 p-6 relative">
                   {p.images?.length > 0 ? (
                     <img
                       src={p.images[0]}
                       alt={p.name}
-                      style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '12px' }}
+                      className="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-500"
                     />
                   ) : (
-                    <div style={{ fontSize: '40px', opacity: 0.3 }}>🔧</div>
+                    <div className="text-4xl opacity-20">🔧</div>
+                  )}
+                  {/* Badge if stock low? */}
+                  {p.stock <= 5 && p.stock > 0 && (
+                     <div className="absolute top-2 right-2 bg-orange-100 text-orange-700 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wide">
+                        Low Stock
+                     </div>
                   )}
                 </div>
 
                 {/* Body */}
-                <div style={{ padding: '14px 16px', flex: 1, display: 'flex', flexDirection: 'column' }}>
-                  <div style={{
-                    fontSize: '10px', fontWeight: 700,
-                    color: 'var(--red)', textTransform: 'uppercase',
-                    letterSpacing: '0.14em', marginBottom: '5px',
-                  }}>{p.brand}</div>
+                <div className="p-5 flex-1 flex flex-col">
+                  <div className="text-[10px] font-bold text-[#C41230] uppercase tracking-[0.15em] mb-2">
+                    {p.brand}
+                  </div>
 
-                  <div style={{
-                    fontSize: '14px', fontWeight: 600,
-                    color: 'var(--navy)', lineHeight: 1.3,
-                    marginBottom: '5px', flex: 1,
-                  }}>{p.name}</div>
+                  <div className="text-sm font-bold text-[#0A1628] leading-snug mb-2 flex-1 group-hover:text-[#C41230] transition-colors">
+                    {p.name}
+                  </div>
 
-                  <div style={{
-                    fontSize: '11px', color: 'var(--mid)',
-                    marginBottom: '12px', fontFamily: 'monospace',
-                  }}>{p.model}</div>
+                  <div className="text-xs text-gray-500 font-mono mb-4">
+                    {p.model}
+                  </div>
 
-                  <div style={{
-                    display: 'flex', justifyContent: 'space-between',
-                    alignItems: 'center',
-                    borderTop: '1px solid #f5f0e8', paddingTop: '10px',
-                  }}>
-                    <div style={{
-                      fontFamily: "'Barlow Condensed', sans-serif",
-                      fontSize: '22px', fontWeight: 800, color: 'var(--navy)',
-                    }}>
+                  <div className="mt-auto flex justify-between items-center pt-3 border-t border-gray-50">
+                    <div className="font-barlow-condensed text-2xl font-bold text-[#0A1628]">
                       ${(p.price / 100).toFixed(0)}
                     </div>
-                    <div style={{
-                      background: 'var(--red)', color: 'var(--white)',
-                      padding: '5px 12px', borderRadius: '2px',
-                      fontFamily: "'Barlow Condensed', sans-serif",
-                      fontSize: '11px', fontWeight: 700,
+                    <div className="bg-[#0A1628] text-white px-3 py-1.5 rounded text-[10px] font-bold uppercase tracking-widest group-hover:bg-[#C41230] transition-colors">
+                      View
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </main>
+  )
+}
                       letterSpacing: '0.08em', textTransform: 'uppercase',
                     }}>View</div>
                   </div>
