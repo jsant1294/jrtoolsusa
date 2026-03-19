@@ -14,7 +14,7 @@ export default function Home() {
         </div>
 
         {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-8 w-full pt-12 pb-20">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-16 w-full pt-12 pb-20">
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 bg-[#C41230]/10 border border-[#C41230]/20 rounded-full px-3 py-1 mb-6 backdrop-blur-sm">
               <span className="w-2 h-2 rounded-full bg-[#C41230]"></span>
@@ -44,7 +44,7 @@ export default function Home() {
 
       {/* Features Section */}
       <section className="py-16 bg-white border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-8">
+        <div className="max-w-7xl mx-auto px-6 md:px-16">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 justify-items-center">
             {[
                { icon: '🏷️', title: 'Up to 40% Off', subtitle: 'vs retail price' },
