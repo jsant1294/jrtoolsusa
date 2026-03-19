@@ -8,9 +8,9 @@ export default function Home() {
           <img 
             src="/jrhero.jpg" 
             alt="Power Tools Background" 
-            className="w-full h-full object-cover opacity-60 mix-blend-overlay"
+            className="w-full h-full object-cover opacity-80"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0A1628] via-[#0A1628]/80 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0A1628] via-[#0A1628]/70 to-transparent"></div>
         </div>
 
         {/* Content */}
@@ -21,12 +21,12 @@ export default function Home() {
               <span className="text-xs font-bold text-[#C41230] uppercase tracking-widest">Same-day shipping</span>
             </div>
             
-            <h1 className="font-barlow-condensed text-6xl md:text-8xl font-bold leading-none text-white mb-6 drop-shadow-lg">
+            <h1 className="font-barlow-condensed text-6xl md:text-8xl font-bold leading-none text-white mb-6 drop-shadow-xl">
               Pro Tools.<br />
               <span className="text-[#C41230]">Less Price.</span>
             </h1>
             
-            <p className="text-xl text-gray-300 mb-8 max-w-lg leading-relaxed drop-shadow-md font-medium">
+            <p className="text-xl text-gray-200 mb-8 max-w-lg leading-relaxed drop-shadow-md font-medium">
               DeWalt, Milwaukee, Makita & more. Free shipping over $99. 30-day returns.
             </p>
             
@@ -45,14 +45,14 @@ export default function Home() {
       {/* Features Section */}
       <section className="py-16 bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 justify-items-center">
             {[
                { icon: '🏷️', title: 'Up to 40% Off', subtitle: 'vs retail price' },
                { icon: '🚀', title: 'Same-Day Ship', subtitle: 'Order by 2pm CT' },
                { icon: '⭐', title: 'Price Match', subtitle: 'Lowest guaranteed' },
                { icon: '🔒', title: 'SSL Secure', subtitle: 'Encrypted checkout' },
             ].map((item, i) => (
-              <div key={i} className="flex flex-col items-center text-center p-6 rounded-xl hover:bg-gray-50 transition-colors group">
+              <div key={i} className="flex flex-col items-center text-center p-6 rounded-xl hover:bg-gray-50 transition-colors group w-full max-w-[280px]">
                 <div className="w-16 h-16 bg-gray-50 group-hover:bg-white rounded-full flex items-center justify-center text-3xl mb-4 shadow-sm border border-gray-100 transition-colors">
                   {item.icon}
                 </div>
