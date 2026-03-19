@@ -1,7 +1,7 @@
 import { createServerClient } from '@/lib/supabase'
 import Link from 'next/link'
 
-const BRANDS = ['Milwaukee','DeWalt','Makita','Bosch','Ridgid','Ryobi','Craftsman','Metabo']
+const BRANDS = ['Milwaukee','DeWalt','Makita','Bosch','Ridgid','Ryobi','Metabo']
 const CATEGORIES = ['drills','saws','grinders','nailers','sanders','measuring','combo','accessories']
 
 export default async function ProductsPage({
