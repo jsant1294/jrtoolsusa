@@ -25,20 +25,19 @@ export default function Home() {
             </p>
             
             <div className="flex flex-wrap gap-4">
-              <a href="/products" className="bg-[#C41230] hover:bg-[#A00E26] text-white px-8 py-4 rounded font-barlow-condensed font-bold text-lg uppercase tracking-wider transition-all flex items-center gap-2">
+              <a href="/products" className="bg-[#C41230] hover:bg-[#A00E26] text-white px-8 py-4 rounded font-barlow-condensed font-bold text-lg uppercase tracking-wider transition-all flex items-center gap-2 shadow-lg shadow-red-900/20">
                 Shop Now <span>→</span>
               </a>
-              <a href="/products" className="border border-gray-700 hover:border-gray-500 text-white px-8 py-4 rounded font-barlow-condensed font-bold text-lg uppercase tracking-wider transition-all">
+              <a href="/products" className="border border-white/30 hover:border-white hover:bg-white/5 text-white px-8 py-4 rounded font-barlow-condensed font-bold text-lg uppercase tracking-wider transition-all">
                 View Brands
               </a>
             </div>
           </div>
 
           {/* Right Image (Placeholder for tool collage) */}
-          <div className="hidden md:block relative h-full min-h-[400px]">
-             {/* Abstract shape or product image would go here */}
-             <div className="absolute inset-0 bg-gradient-to-tr from-[#0A1628] to-transparent z-10"></div>
-             <img src="/jrhero.jpg" alt="Power Tools" className="absolute inset-0 w-full h-full object-cover rounded-lg opacity-40 mix-blend-overlay" />
+          <div className="hidden md:block relative h-full min-h-[500px]">
+             <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628] via-transparent to-transparent z-10 bottom-0 h-1/3"></div>
+             <img src="/jrhero.jpg" alt="Power Tools" className="absolute inset-0 w-full h-full object-cover rounded-xl shadow-2xl border border-white/5" />
           </div>
         </div>
       </section>
@@ -68,25 +67,14 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section style={{ background: 'var(--navy)', color: 'var(--white)', padding: '48px 32px', textAlign: 'center' }}>
-        <h2 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: '32px', fontWeight: 800, marginBottom: '16px' }}>
+      <section className="bg-[#0A1628] text-white py-16 px-8 text-center border-t border-white/5">
+        <h2 className="font-barlow-condensed text-4xl font-bold mb-4">
           Ready to upgrade your toolkit?
         </h2>
-        <p style={{ fontSize: '16px', color: '#bbb', marginBottom: '24px' }}>Browse our full selection of pro-grade tools.</p>
-        <a href="/products" style={{
-          display: 'inline-block',
-          background: 'var(--red)',
-          color: 'var(--white)',
-          padding: '14px 40px',
-          borderRadius: '4px',
-          fontFamily: "'Barlow Condensed', sans-serif",
-          fontSize: '14px',
-          fontWeight: 700,
-          letterSpacing: '0.12em',
-          textTransform: 'uppercase',
-          textDecoration: 'none',
-          transition: 'background 0.3s',
-        }}>
+        <p className="text-lg text-gray-400 mb-8 max-w-xl mx-auto">
+          Browse our full selection of pro-grade tools from top brands like Milwaukee, DeWalt, and Makita.
+        </p>
+        <a href="/products" className="inline-block bg-[#C41230] hover:bg-[#A00E26] text-white px-10 py-3.5 rounded font-barlow-condensed font-bold text-sm tracking-[0.15em] uppercase transition-all shadow-lg hover:shadow-red-900/20 transform hover:-translate-y-0.5">
           View All Tools
         </a>
       </section>
