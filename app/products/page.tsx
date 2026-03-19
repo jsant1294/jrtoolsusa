@@ -154,38 +154,3 @@ export default async function ProductsPage({
     </main>
   )
 }
-                      letterSpacing: '0.08em', textTransform: 'uppercase',
-                    }}>View</div>
-                  </div>
-
-                  {p.stock <= 5 && p.stock > 0 && (
-                    <div style={{ fontSize: '11px', color: 'var(--red)', fontWeight: 600, marginTop: '6px' }}>
-                      ⚠ Only {p.stock} left
-                    </div>
-                  )}
-                  {p.stock === 0 && (
-                    <div style={{ fontSize: '11px', color: '#999', fontWeight: 600, marginTop: '6px' }}>
-                      Out of stock
-                    </div>
-                  )}
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
-
-        {/* Empty state */}
-        {(!products || products.length === 0) && (
-          <div style={{ textAlign: 'center', padding: '80px 32px' }}>
-            <div style={{ fontSize: '40px', marginBottom: '16px', opacity: 0.3 }}>🔧</div>
-            <div style={{ fontSize: '18px', color: 'var(--mid)', marginBottom: '12px' }}>No tools found</div>
-            <Link href="/products" style={{ color: 'var(--red)', fontWeight: 600, fontSize: '14px' }}>
-              Clear filters →
-            </Link>
-          </div>
-        )}
-
-      </div>
-    </main>
-  )
-}

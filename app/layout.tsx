@@ -60,53 +60,7 @@ function Nav() {
     </header>
   )
 }
-        <div>
-          <div style={{
-            fontFamily: "'Barlow Condensed', sans-serif",
-            fontSize: '18px', fontWeight: 800,
-            color: 'var(--navy)', letterSpacing: '0.04em',
-          }}>
-            JR<span style={{ color: 'var(--red)' }}>Tools</span>USA
-          </div>
-          <div style={{
-            fontSize: '8px', letterSpacing: '0.2em',
-            textTransform: 'uppercase', color: 'var(--mid)',
-          }}>
-            Tools for Less
-          </div>
-        </div>
-      </a>
 
-      <nav style={{ display: 'flex', gap: '24px' }}>
-        {[
-          { label: 'Shop', href: '/products' },
-          { label: 'Brands', href: '/brands' },
-          { label: 'Deals', href: '/deals' },
-          { label: 'About', href: '/about' },
-        ].map(item => (
-          <a key={item.label} href={item.href} style={{
-            fontSize: '12px', fontFamily: "'Barlow Condensed', sans-serif",
-            fontWeight: 700, letterSpacing: '0.12em',
-            textTransform: 'uppercase', color: 'var(--steel)',
-          }}>
-            {item.label}
-          </a>
-        ))}
-      </nav>
-
-      <a href="/products" style={{
-        background: 'var(--red)', color: 'var(--white)',
-        padding: '10px 20px', borderRadius: '3px',
-        fontFamily: "'Barlow Condensed', sans-serif",
-        fontSize: '11px', fontWeight: 700,
-        letterSpacing: '0.12em', textTransform: 'uppercase',
-        whiteSpace: 'nowrap',
-      }}>
-        Shop Now
-      </a>
-    </header>
-  )
-}
 
 function Footer() {
   return (
