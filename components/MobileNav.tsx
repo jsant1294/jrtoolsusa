@@ -13,7 +13,7 @@ const NAV_SECTIONS = [
     ]
   },
   {
-    label: 'Browse',å
+    label: 'Browse',
     links: [
       { label: 'Brands', href: '/brands' },
       { label: 'About Us', href: '/about' },
