@@ -14,49 +14,52 @@ export default function Home() {
         </div>
 
         {/* Content */}
-        <div className="relative z-10 max-w-5xl mx-auto px-6 w-full pt-16 pb-24 text-center flex flex-col items-center">
-          <div className="inline-flex items-center gap-2 mb-6">
-            <span className="text-xs font-bold text-[#D4A017] uppercase tracking-widest">★ TOOLS FOR LESS · AMERICA'S BEST PRICES ★</span>
-          </div>
-          
-          <h1 className="font-barlow-condensed text-6xl md:text-7xl lg:text-8xl font-bold leading-none text-white mb-6 drop-shadow-xl">
-            Pro-Grade Power Tools at<br />
-            <span className="text-white">Contractor Prices</span>
-          </h1>
-          
-          <p className="text-lg text-gray-200 mb-8 max-w-2xl leading-relaxed drop-shadow-md font-medium">
-            DeWalt, Milwaukee, Makita, and more. Ships same day. 30-day returns. Free shipping over $99.
-          </p>
-          
-          <div className="flex flex-wrap justify-center gap-4">
-            <a href="/products" className="bg-[#C41230] hover:bg-[#A00E26] text-white px-8 py-3.5 rounded font-barlow-condensed font-bold text-sm uppercase tracking-widest transition-all shadow-lg hover:shadow-red-900/30">
-              Shop Now
-            </a>
-            <a href="/products" className="border border-white/30 hover:border-white hover:bg-white/10 text-white px-8 py-3.5 rounded font-barlow-condensed font-bold text-sm uppercase tracking-widest transition-all backdrop-blur-sm">
-              Learn More
-            </a>
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-16 w-full pt-12 pb-20">
+          <div className="max-w-2xl">
+            <div className="inline-flex items-center gap-2 bg-[#C41230]/10 border border-[#C41230]/20 rounded-full px-3 py-1 mb-6 backdrop-blur-sm">
+              <span className="w-2 h-2 rounded-full bg-[#C41230]"></span>
+              <span className="text-xs font-bold text-[#C41230] uppercase tracking-widest">Same-day shipping</span>
+            </div>
+            
+            <h1 className="font-barlow-condensed text-6xl md:text-8xl font-bold leading-none text-white mb-6 drop-shadow-xl">
+              Pro Tools.<br />
+              <span className="text-[#C41230]">Less Price.</span>
+            </h1>
+            
+            <p className="text-xl text-gray-200 mb-8 max-w-lg leading-relaxed drop-shadow-md font-medium">
+              DeWalt, Milwaukee, Makita & more. Free shipping over $99. 30-day returns.
+            </p>
+            
+            <div className="flex flex-wrap gap-4">
+              <a href="/products" className="bg-[#C41230] hover:bg-[#A00E26] text-white px-10 py-4 rounded font-barlow-condensed font-bold text-xl uppercase tracking-wider transition-all flex items-center gap-2 shadow-lg shadow-red-900/30">
+                Shop Now <span>→</span>
+              </a>
+              <a href="/products" className="border-2 border-white/20 hover:border-white hover:bg-white/10 text-white px-10 py-4 rounded font-barlow-condensed font-bold text-xl uppercase tracking-wider transition-all backdrop-blur-sm">
+                View Brands
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
       <section className="py-16 bg-white border-b border-gray-100">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 justify-items-center text-center">
+        <div className="max-w-7xl mx-auto px-6 md:px-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 justify-items-center">
             {[
-               { icon: '💰', title: 'Unbeatable Prices', subtitle: 'Up to 40% off retail' },
-               { icon: '✈', title: 'Ships Same Day', subtitle: 'Order before 2pm CT' },
-               { icon: '🏆', title: 'Less Price Guaranteed', subtitle: "America's lowest prices" },
-               { icon: '🔒', title: 'Secure Checkout', subtitle: 'SSL encrypted payments' },
+               { icon: '🏷️', title: 'Up to 40% Off', subtitle: 'vs retail price' },
+               { icon: '🚀', title: 'Same-Day Ship', subtitle: 'Order by 2pm CT' },
+               { icon: '⭐', title: 'Price Match', subtitle: 'Lowest guaranteed' },
+               { icon: '🔒', title: 'SSL Secure', subtitle: 'Encrypted checkout' },
             ].map((item, i) => (
-              <div key={i} className="flex flex-col items-center group w-full">
-                <div className="text-4xl mb-4 transform group-hover:scale-110 transition-transform duration-300">
+              <div key={i} className="flex flex-col items-center text-center p-6 rounded-xl hover:bg-gray-50 transition-colors group w-full max-w-[280px]">
+                <div className="w-16 h-16 bg-gray-50 group-hover:bg-white rounded-full flex items-center justify-center text-3xl mb-4 shadow-sm border border-gray-100 transition-colors">
                   {item.icon}
                 </div>
-                <h3 className="font-barlow-condensed text-sm font-bold text-[#0A1628] uppercase tracking-wider mb-2">
+                <h3 className="font-barlow-condensed text-xl font-bold text-[#0A1628] uppercase tracking-wide mb-2">
                   {item.title}
                 </h3>
-                <p className="text-xs text-gray-500 font-medium">
+                <p className="text-sm text-gray-500 font-medium">
                   {item.subtitle}
                 </p>
               </div>
