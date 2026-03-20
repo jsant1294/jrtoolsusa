@@ -27,7 +27,7 @@ export default function AboutPage() {
                 JRToolsUSA was founded in 2018 to bring quality, pro-grade tools at discount prices to contractors and homeowners across America.
               </p>
               <p style={{ fontSize: '16px', lineHeight: 1.7, color: 'var(--mid)', marginBottom: '16px' }}>
-                Today, we operate from a 5,000 sq ft warehouse in South Dallas, stocking over 1,500 SKUs from the industry's most trusted brands: DeWalt, Milwaukee, Makita, Bosch, Festool, and more.
+                Today, we operate from our warehouse in <strong>Alpharetta, GA</strong>, stocking over 1,500 SKUs from the industry's most trusted brands: DeWalt, Milwaukee, Makita, Bosch, Festool, and more.
               </p>
               <p style={{ fontSize: '16px', lineHeight: 1.7, color: 'var(--mid)' }}>
                 Every order ships same-day with full manufacturer warranty. We stand behind our products and our customers.
@@ -60,7 +60,7 @@ export default function AboutPage() {
               { title: 'Unbeatable Prices', desc: 'Up to 40% off retail. We pass savings to contractors and homeowners.' },
               { title: 'Price Match Guarantee', desc: 'Find it cheaper elsewhere? We\'ll match any legitimate price.' },
               { title: 'Quality Guaranteed', desc: 'Only authentic, warranty-backed tools. No fakes, no seconds.' },
-              { title: 'Fast Shipping', desc: 'Same-day ship from Dallas. 24-48hr delivery across Texas.' },
+              { title: 'Fast Shipping', desc: 'Same-day ship from Alpharetta, GA. 24-48hr delivery nationwide.' },
               { title: 'Expert Support', desc: 'Tool experts on staff. Real advice, not sales pitch.' },
               { title: 'Easy Returns', desc: '30-day returns, no questions asked. Your satisfaction first.' },
             ].map((value, i) => (

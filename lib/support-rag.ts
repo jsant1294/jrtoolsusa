@@ -39,6 +39,12 @@ const FALLBACK_SUPPORT_CORPUS: RetrievedSupportChunk[] = [
     title: 'Support Contact',
     content: 'Support phone is (404) 565-7099 and support email is info@jrtoolsusa.com. Hours are Mon-Fri 7am-6pm CT.',
   },
+  {
+    sourceType: 'info',
+    sourceId: 'location',
+    title: 'Store Location',
+    content: 'JRToolsUSA is located in Alpharetta, GA 30009. Local pickup is available Monday through Saturday, 8am–6pm. Call or text (404) 565-7099 ahead to confirm pickup availability. We ship nationwide from Alpharetta, GA.',
+  },
 ]
 
 function normalize(text: string) {
