@@ -21,6 +21,7 @@ TWILIO_AUTH_TOKEN=
 TWILIO_PHONE_NUMBER=
 TWILIO_INBOUND_WEBHOOK_URL=
 TWILIO_VERIFY_SIGNATURE=false
+TWILIO_ADMIN_TOKEN=
 ```
 
 Replace `your_api_key_here` with your actual Groq API key.
@@ -29,6 +30,7 @@ Set `ENABLE_PRODUCT_CHAT=false` while product data is being refreshed.
 Set `ENABLE_PRODUCT_CHAT=true` when you are ready to re-enable product recommendations in chat.
 `GROQ_CHAT_MODEL` lets you swap models without code changes.
 Set `TWILIO_VERIFY_SIGNATURE=true` in production after setting `TWILIO_INBOUND_WEBHOOK_URL`.
+Set `TWILIO_ADMIN_TOKEN` to a long random secret used for outbound SMS API auth.
 
 ## Step 3: Install Dependencies
 
@@ -61,6 +63,9 @@ npm install groq-sdk
 - `POST /api/twilio/inbound` - Twilio inbound SMS webhook
   - Consumes Twilio form-encoded payloads
   - Returns TwiML with an AI-generated reply grounded in support RAG context
+- `POST /api/twilio/send` - Protected outbound SMS endpoint
+  - Requires header `x-admin-token: <TWILIO_ADMIN_TOKEN>` or `Authorization: Bearer <TWILIO_ADMIN_TOKEN>`
+  - Body: `{ "to": "+14045551234", "message": "Your order is ready for pickup." }`
 
 ## Notes
 
