@@ -23,9 +23,11 @@ export default function Home() {
             Pro-Grade Power Tools at<br />
             <span className="text-white">Contractor Prices</span>
           </h1>
-          <p className="text-lg text-gray-200 mb-8 max-w-2xl leading-relaxed drop-shadow-md font-medium">
-            DeWalt, Milwaukee, Makita, and more. Ships same day. 30-day returns. Free shipping over $99.
-          </p>
+          <div className="flex justify-center">
+            <p className="text-lg text-gray-200 mb-8 max-w-2xl leading-relaxed drop-shadow-md font-medium text-center">
+              DeWalt, Milwaukee, Makita, and more. Ships same day.
+            </p>
+          </div>
           <div className="flex flex-wrap justify-center gap-4">
             <a href="/products" className="bg-[#C41230] hover:bg-[#A00E26] px-8 py-3.5 rounded font-barlow-condensed font-bold text-sm uppercase tracking-widest transition-all shadow-lg" style={{ color: '#FFFFFF' }}>
               Shop Now
@@ -33,6 +35,11 @@ export default function Home() {
             <a href="/deals" className="border-2 border-white hover:bg-white/20 px-8 py-3.5 rounded font-barlow-condensed font-bold text-sm uppercase tracking-widest transition-all" style={{ color: '#FFFFFF' }}>
               Deals Now
             </a>
+          </div>
+          <div className="mt-5 font-bold text-center" style={{ color: '#D4A017', fontSize: '1.15rem', letterSpacing: '0.01em' }}>
+            <span role="img" aria-label="fire">🔥</span> Power Tool Deals Below Retail<br />
+            <span style={{ fontWeight: 700 }}>Milwaukee &bull; DeWalt &bull; Makita</span><br />
+            <span style={{ fontWeight: 700 }}>New &amp; Open Box — Limited Stock</span>
           </div>
         </div>
       </section>
