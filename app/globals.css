@@ -134,3 +134,11 @@ a {
     font-size: 22px !important;
   }
 }
+
+@media (max-width: 768px) {
+  .mobile-menu-btn { display: flex !important; }
+  .desktop-nav { display: none !important; }
+  .desktop-shop-now { display: none !important; }
+  .footer-grid { grid-template-columns: 1fr !important; }
+  .footer-bottom { flex-direction: column !important; text-align: center !important; }
+}
