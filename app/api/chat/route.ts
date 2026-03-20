@@ -11,6 +11,7 @@ import { NextRequest, NextResponse } from 'next/server'
 export async function POST(req: NextRequest) {
   try {
     const { messages, mode } = await req.json()
+    const productChatEnabled = process.env.ENABLE_PRODUCT_CHAT === 'true'
 
     // Validate input
     if (!messages || !Array.isArray(messages)) {
@@ -25,6 +26,11 @@ export async function POST(req: NextRequest) {
     let references: Array<{ title: string; sourceType: string; sourceId: string }> = []
 
     if (mode === 'product-search') {
+      if (!productChatEnabled) {
+        response = 'Product recommendations are temporarily paused while we refresh catalog data. Please browse /products or /deals, or ask support and we can help directly at (404) 565-7099.'
+        return NextResponse.json({ response, references })
+      }
+
       // Get products from Supabase
       const supabase = createServerClient()
       const { data: products } = await supabase.from('products').select('*').eq('active', true).limit(20)
