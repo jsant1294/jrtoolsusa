@@ -228,7 +228,7 @@ function OrderSummary({
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '12px', color: 'var(--mid)' }}>
           <span>🚚</span>
-          <span>Ships from Dallas, TX within 24 hrs</span>
+          <span>Ships from Alpharetta, GA within 24 hrs</span>
         </div>
       </div>
 

@@ -245,7 +245,7 @@ export function OrderConfirmation({
               ))}
             </Row>
             <Text style={s.footerCopy}>
-              © {new Date().getFullYear()} JRToolsUSA · 1234 Commerce St, Dallas TX 75201
+              © {new Date().getFullYear()} JRToolsUSA · Alpharetta, GA 30009
             </Text>
           </Section>
 
