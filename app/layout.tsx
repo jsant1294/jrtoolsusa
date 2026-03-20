@@ -7,6 +7,18 @@ import Footer from '@/components/Footer'
 export const metadata: Metadata = {
   title: 'JRToolsUSA — Pro Grade Power Tools',
   description: 'Veteran owned. Alpharetta GA. DeWalt, Milwaukee, Makita and more. Free shipping over $99.',
+  openGraph: {
+    title: 'Pro Grade Power Tools at Contractor Prices',
+    description: 'Unbeatable prices on DeWalt, Milwaukee, Makita and more. Same-day shipping.',
+    images: [{
+      url: 'https://jrtoolsusa.com/thumbnail.png',
+      width: 1200,
+      height: 630,
+      alt: 'Pro grade power tools',
+    }],
+    url: 'https://jrtoolsusa.com',
+    type: 'website',
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
