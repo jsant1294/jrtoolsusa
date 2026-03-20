@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { createBrowserClient } from '@supabase/ssr'
 import Link from 'next/link'
 
@@ -31,10 +32,11 @@ type Product = {
 }
 
 export default function ProductsPage() {
+  const searchParams = useSearchParams()
   const [allProducts, setAllProducts] = useState<Product[]>([])
   const [search, setSearch] = useState('')
-  const [brand, setBrand] = useState('')
-  const [category, setCategory] = useState('')
+  const [brand, setBrand] = useState(searchParams.get('brand') ?? '')
+  const [category, setCategory] = useState(searchParams.get('category') ?? '')
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -71,7 +73,6 @@ export default function ProductsPage() {
     fontWeight: 700 as const,
     letterSpacing: '0.08em',
     textTransform: 'uppercase' as const,
-    textDecoration: 'none',
     background: active ? color : 'white',
     color: active ? 'white' : 'var(--navy)',
     border: `1px solid ${active ? color : '#e8e4dc'}`,
@@ -99,7 +100,7 @@ export default function ProductsPage() {
           </div>
         </div>
 
-        {/* Search Bar */}
+        {/* Search */}
         <div style={{ marginBottom: '24px', display: 'flex', gap: '8px', maxWidth: '500px' }}>
           <input
             type="text"
@@ -107,21 +108,14 @@ export default function ProductsPage() {
             onChange={e => setSearch(e.target.value)}
             placeholder="Search by name or model number..."
             style={{
-              flex: 1,
-              padding: '10px 16px',
-              border: '1px solid #e8e4dc',
-              borderRadius: '4px',
-              fontSize: '14px',
-              fontFamily: "'Barlow', sans-serif",
-              background: 'white',
-              color: 'var(--navy)',
-              outline: 'none',
+              flex: 1, padding: '10px 16px',
+              border: '1px solid #e8e4dc', borderRadius: '4px',
+              fontSize: '14px', fontFamily: "'Barlow', sans-serif",
+              background: 'white', color: 'var(--navy)', outline: 'none',
             }}
           />
           {search && (
-            <button onClick={() => setSearch('')} style={btnStyle(false)}>
-              Clear
-            </button>
+            <button onClick={() => setSearch('')} style={btnStyle(false)}>Clear</button>
           )}
         </div>
 
@@ -164,18 +158,13 @@ export default function ProductsPage() {
 
         {/* Product Grid */}
         {!loading && (
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '24px' }} className="product-grid">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '24px' }}>
             {filtered.map(p => (
               <Link href={`/products/${p.slug}`} key={p.id} style={{ textDecoration: 'none', color: 'inherit' }}>
                 <div style={{
-                  background: 'white',
-                  borderRadius: '8px',
-                  padding: '20px',
-                  border: '1px solid #e8e4dc',
-                  height: '100%',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  transition: 'all 0.2s ease',
+                  background: 'white', borderRadius: '8px', padding: '20px',
+                  border: '1px solid #e8e4dc', height: '100%',
+                  display: 'flex', flexDirection: 'column',
                 }}>
                   {p.images && p.images.length > 0 && (
                     <div style={{ width: '100%', height: '180px', background: '#f5f5f5', borderRadius: '4px', marginBottom: '16px', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -194,11 +183,9 @@ export default function ProductsPage() {
                     </div>
                   </div>
                   <div style={{ borderTop: '1px solid #f5f0e8', paddingTop: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
-                    <div style={{ fontSize: '22px', fontWeight: 800, color: 'var(--navy)' }}>
-                      ${p.price}
-                    </div>
+                    <div style={{ fontSize: '22px', fontWeight: 800, color: 'var(--navy)' }}>${p.price}</div>
                     {p.stock <= 5 && p.stock > 0 && (
-                      <div style={{ fontSize: '11px', color: 'var(--red)', fontWeight: 600 }}>⚠ Only {p.stock} left</div>
+                      <div style={{ fontSize: '11px', color: 'var(--red)', fontWeight: 600 }}>Only {p.stock} left</div>
                     )}
                     {p.stock === 0 && (
                       <div style={{ fontSize: '11px', color: '#999', fontWeight: 600 }}>Out of Stock</div>
@@ -214,7 +201,8 @@ export default function ProductsPage() {
         {!loading && filtered.length === 0 && (
           <div style={{ textAlign: 'center', padding: '64px 32px' }}>
             <div style={{ fontSize: '18px', color: 'var(--mid)' }}>No tools found. Try a different filter.</div>
-            <button onClick={() => { setBrand(''); setCategory(''); setSearch('') }} style={{ ...btnStyle(true), marginTop: '16px', background: 'var(--red)', borderColor: 'var(--red)' }}>
+            <button onClick={() => { setBrand(''); setCategory(''); setSearch('') }}
+              style={{ ...btnStyle(true), marginTop: '16px', background: 'var(--red)', borderColor: 'var(--red)' }}>
               Clear Filters
             </button>
           </div>
