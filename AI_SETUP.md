@@ -15,12 +15,14 @@ Create `.env.local` in the project root and add:
 ```
 GROQ_API_KEY=your_api_key_here
 ENABLE_PRODUCT_CHAT=false
+GROQ_CHAT_MODEL=llama-3.3-70b-versatile
 ```
 
 Replace `your_api_key_here` with your actual Groq API key.
 
 Set `ENABLE_PRODUCT_CHAT=false` while product data is being refreshed.
 Set `ENABLE_PRODUCT_CHAT=true` when you are ready to re-enable product recommendations in chat.
+`GROQ_CHAT_MODEL` lets you swap models without code changes.
 
 ## Step 3: Install Dependencies
 

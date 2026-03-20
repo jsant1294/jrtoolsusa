@@ -4,7 +4,7 @@
  */
 
 import { createServerClient } from '@/lib/supabase'
-import { supportChatWithContext } from '@/lib/groq'
+import { getGroqClient, GROQ_CHAT_MODEL, supportChatWithContext } from '@/lib/groq'
 import { retrieveSupportContext } from '@/lib/support-rag'
 import { NextRequest, NextResponse } from 'next/server'
 
@@ -45,13 +45,13 @@ export async function POST(req: NextRequest) {
         }
 
         // Call Groq with product context
-        const { groq } = await import('@/lib/groq')
+        const groq = getGroqClient()
         const productList = products
           .map(p => `${p.name} (${p.brand}, $${p.price})`)
           .join('\n')
 
         const result = await groq.chat.completions.create({
-          model: 'mixtral-8x7b-32768',
+          model: GROQ_CHAT_MODEL,
           messages: [
             {
               role: 'system',
@@ -88,6 +88,9 @@ When asked what tools a customer needs, recommend specific products from the lis
     return NextResponse.json({ response, references })
   } catch (error) {
     console.error('Chat API error:', error)
+    if (error instanceof Error && /GROQ_API_KEY|AI service not configured/i.test(error.message)) {
+      return NextResponse.json({ error: 'AI service not configured' }, { status: 500 })
+    }
     return NextResponse.json({ error: 'Failed to process request' }, { status: 500 })
   }
 }

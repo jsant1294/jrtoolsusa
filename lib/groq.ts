@@ -6,21 +6,35 @@
 import Groq from 'groq-sdk'
 import type { RetrievedSupportChunk } from '@/lib/support-rag'
 
-export const groq = new Groq({
-  apiKey: process.env.GROQ_API_KEY,
-})
+export const GROQ_CHAT_MODEL = process.env.GROQ_CHAT_MODEL || 'llama-3.3-70b-versatile'
+
+let groqClient: Groq | null = null
+
+export function getGroqClient() {
+  const apiKey = process.env.GROQ_API_KEY
+  if (!apiKey) {
+    throw new Error('AI service not configured: GROQ_API_KEY is missing.')
+  }
+
+  if (!groqClient) {
+    groqClient = new Groq({ apiKey })
+  }
+
+  return groqClient
+}
 
 /**
  * Search products using AI understanding
  * Works with natural language queries
  */
 export async function searchProductsWithAI(query: string, products: any[]) {
+  const groq = getGroqClient()
   const productList = products
     .map(p => `${p.name} (${p.brand}, $${p.price})`)
     .join('\n')
 
   const response = await groq.chat.completions.create({
-    model: 'mixtral-8x7b-32768',
+    model: GROQ_CHAT_MODEL,
     messages: [
       {
         role: 'system',
@@ -54,6 +68,7 @@ export async function supportChatWithContext(
   messages: Array<{ role: 'user' | 'assistant'; content: string }>,
   contextChunks: RetrievedSupportChunk[]
 ) {
+  const groq = getGroqClient()
   const contextBlock = contextChunks.length
     ? contextChunks
         .map((chunk, index) => `[#${index + 1}] ${chunk.title}\n${chunk.content}`)
@@ -61,7 +76,7 @@ export async function supportChatWithContext(
     : 'No external context was retrieved.'
 
   const response = await groq.chat.completions.create({
-    model: 'mixtral-8x7b-32768',
+    model: GROQ_CHAT_MODEL,
     messages: [
       {
         role: 'system',
