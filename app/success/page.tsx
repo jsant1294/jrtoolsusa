@@ -99,7 +99,7 @@ function NextSteps() {
     { icon: '📧', title: 'Confirmation email', body: 'Check your inbox — a receipt is on its way.' },
     { icon: '📦', title: 'Order processing', body: 'We\'ll pick, pack and ship within 24 hours.' },
     { icon: '🚚', title: 'Tracking number', body: 'You\'ll get a tracking email once it ships.' },
-    { icon: '🛠️', title: 'Need help?', body: 'Call 1-800-JR-TOOLS Mon–Fri 7am–6pm CT.' },
+    { icon: '🛠️', title: 'Need help?', body: 'Call (404) 565-7099 Mon–Fri 7am–6pm CT.' },
   ]
 
   return (

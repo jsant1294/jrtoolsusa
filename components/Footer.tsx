@@ -64,7 +64,7 @@ export default function Footer() {
               { label: 'Contact Us', href: '#' },
             ]},
             { title: 'Contact', links: [
-              { label: '1-800-JR-TOOLS', href: 'tel:1-800-587-8657' },
+              { label: '(404) 565-7099', href: 'tel:+14045657099' },
               { label: 'info@jrtoolsusa.com', href: 'mailto:info@jrtoolsusa.com' },
               { label: 'Alpharetta, GA 30009', href: 'https://www.google.com/maps/search/JRToolsUSA+Alpharetta+GA' },
               { label: 'Mon-Fri 7am-6pm CT', href: '#' },

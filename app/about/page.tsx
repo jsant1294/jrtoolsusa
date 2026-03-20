@@ -98,7 +98,7 @@ export default function AboutPage() {
         <p style={{ fontSize: '16px', color: '#aaa', marginBottom: '24px' }}>
           Talk to a real person. We're here Mon–Fri, 7am–6pm CT.
         </p>
-        <a href="tel:1-800-577-8657" style={{
+        <a href="tel:+14045657099" style={{
           display: 'inline-block',
           background: 'var(--red)',
           color: 'var(--white)',
@@ -111,7 +111,7 @@ export default function AboutPage() {
           letterSpacing: '0.12em',
           textDecoration: 'none',
         }}>
-          Call 1-800-JR-TOOLS
+          Call (404) 565-7099
         </a>
       </section>
 

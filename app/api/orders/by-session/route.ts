@@ -124,8 +124,8 @@ export default function GlobalError({
         </div>
         <div className="mt-8 text-sm text-gray-400">
           Need help? Call{' '}
-          <a href="tel:18005578665" className="text-[#C41230] font-medium hover:underline">
-            1-800-JR-TOOLS
+          <a href="tel:+14045657099" className="text-[#C41230] font-medium hover:underline">
+            (404) 565-7099
           </a>
         </div>
       </div>

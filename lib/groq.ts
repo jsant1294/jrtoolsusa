@@ -59,7 +59,7 @@ Key facts:
 - 30-day returns, no questions asked
 - Price Match Guarantee - we have America's lowest prices
 
-Be friendly, concise, and helpful. If unsure, suggest contacting support at 1-800-JR-TOOLS or info@jrtoolsusa.com`,
+Be friendly, concise, and helpful. If unsure, suggest contacting support at (404) 565-7099 or info@jrtoolsusa.com`,
       },
       ...messages,
     ],

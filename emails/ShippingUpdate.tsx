@@ -244,7 +244,7 @@ export function ShippingUpdate({
               {[
                 { icon: '↩️', text: '30-day returns'   },
                 { icon: '🛡️', text: 'Insured shipment' },
-                { icon: '📞', text: '1-800-JR-TOOLS'   },
+                { icon: '📞', text: '(404) 565-7099'   },
               ].map(t => (
                 <Column key={t.text} style={s.trustCell}>
                   <Text style={{ fontSize: '18px', margin: 0 }}>{t.icon}</Text>

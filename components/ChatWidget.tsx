@@ -66,7 +66,7 @@ export default function ChatWidget() {
           {
             id: Date.now().toString(),
             role: 'assistant',
-            content: `Sorry, there was an error: ${data.error}. Please try again or contact support at 1-800-JR-TOOLS.`,
+            content: `Sorry, there was an error: ${data.error}. Please try again or contact support at (404) 565-7099.`,
             timestamp: new Date(),
           },
         ])
