@@ -27,11 +27,11 @@ export default function Home() {
             DeWalt, Milwaukee, Makita, and more. Ships same day. 30-day returns. Free shipping over $99.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <a href="/products" className="bg-[#C41230] hover:bg-[#A00E26] text-white px-8 py-3.5 rounded font-barlow-condensed font-bold text-sm uppercase tracking-widest transition-all shadow-lg">
+            <a href="/products" className="bg-[#C41230] hover:bg-[#A00E26] px-8 py-3.5 rounded font-barlow-condensed font-bold text-sm uppercase tracking-widest transition-all shadow-lg" style={{ color: '#FFFFFF' }}>
               Shop Now
             </a>
-            <a href="/products" className="border border-white/30 hover:border-white hover:bg-white/10 text-white px-8 py-3.5 rounded font-barlow-condensed font-bold text-sm uppercase tracking-widest transition-all backdrop-blur-sm">
-              Learn More
+            <a href="/deals" className="border-2 border-white hover:bg-white/20 px-8 py-3.5 rounded font-barlow-condensed font-bold text-sm uppercase tracking-widest transition-all" style={{ color: '#FFFFFF' }}>
+              Deals Now
             </a>
           </div>
         </div>
