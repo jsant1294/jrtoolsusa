@@ -4,6 +4,7 @@
  */
 
 import Groq from 'groq-sdk'
+import type { RetrievedSupportChunk } from '@/lib/support-rag'
 
 export const groq = new Groq({
   apiKey: process.env.GROQ_API_KEY,
@@ -46,6 +47,19 @@ When asked what tools a customer needs, recommend specific products from the lis
  * General customer support chat
  */
 export async function supportChat(messages: Array<{ role: 'user' | 'assistant'; content: string }>) {
+  return supportChatWithContext(messages, [])
+}
+
+export async function supportChatWithContext(
+  messages: Array<{ role: 'user' | 'assistant'; content: string }>,
+  contextChunks: RetrievedSupportChunk[]
+) {
+  const contextBlock = contextChunks.length
+    ? contextChunks
+        .map((chunk, index) => `[#${index + 1}] ${chunk.title}\n${chunk.content}`)
+        .join('\n\n')
+    : 'No external context was retrieved.'
+
   const response = await groq.chat.completions.create({
     model: 'mixtral-8x7b-32768',
     messages: [
@@ -59,7 +73,16 @@ Key facts:
 - 30-day returns, no questions asked
 - Price Match Guarantee - we have America's lowest prices
 
-Be friendly, concise, and helpful. If unsure, suggest contacting support at (404) 565-7099 or info@jrtoolsusa.com`,
+Grounding rules:
+- Use the retrieved context below as your primary source.
+- If the answer is not in the retrieved context, say you are not fully sure and offer support contact details.
+- Keep responses concise and practical.
+- When using retrieved info, cite the source number like [#1] in-line.
+
+Retrieved context:
+${contextBlock}
+
+If unsure, suggest contacting support at (404) 565-7099 or info@jrtoolsusa.com.`,
       },
       ...messages,
     ],

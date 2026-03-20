@@ -7,6 +7,7 @@ interface Message {
   role: 'user' | 'assistant'
   content: string
   timestamp: Date
+  references?: Array<{ title: string; sourceType: string; sourceId: string }>
 }
 
 export default function ChatWidget() {
@@ -49,11 +50,13 @@ export default function ChatWidget() {
     setIsLoading(true)
 
     try {
+      const outboundMessages = [...messages, userMessage].map(m => ({ role: m.role, content: m.content }))
+
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          messages: messages.map(m => ({ role: m.role, content: m.content })),
+          messages: outboundMessages,
           mode,
         }),
       })
@@ -78,6 +81,7 @@ export default function ChatWidget() {
             role: 'assistant',
             content: data.response,
             timestamp: new Date(),
+            references: Array.isArray(data.references) ? data.references : undefined,
           },
         ])
       }
@@ -252,6 +256,24 @@ export default function ChatWidget() {
                   }}
                 >
                   {msg.content}
+                  {msg.role === 'assistant' && msg.references && msg.references.length > 0 && (
+                    <div
+                      style={{
+                        marginTop: '8px',
+                        paddingTop: '6px',
+                        borderTop: '1px solid rgba(10,22,40,0.15)',
+                        fontSize: '11px',
+                        color: '#475569',
+                      }}
+                    >
+                      <div style={{ fontWeight: 700, marginBottom: '4px' }}>Sources</div>
+                      {msg.references.map(ref => (
+                        <div key={`${ref.sourceType}:${ref.sourceId}`}>
+                          {ref.title}
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             ))}

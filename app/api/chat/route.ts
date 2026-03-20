@@ -4,7 +4,8 @@
  */
 
 import { createServerClient } from '@/lib/supabase'
-import { supportChat } from '@/lib/groq'
+import { supportChatWithContext } from '@/lib/groq'
+import { retrieveSupportContext } from '@/lib/support-rag'
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function POST(req: NextRequest) {
@@ -21,6 +22,7 @@ export async function POST(req: NextRequest) {
     }
 
     let response: string
+    let references: Array<{ title: string; sourceType: string; sourceId: string }> = []
 
     if (mode === 'product-search') {
       // Get products from Supabase
@@ -66,11 +68,18 @@ When asked what tools a customer needs, recommend specific products from the lis
         response = result.choices[0]?.message?.content || 'I could not find suitable recommendations.'
       }
     } else {
-      // General support chat
-      response = await supportChat(messages)
+      // General support chat with retrieval-augmented context
+      const lastUserMessage = [...messages].reverse().find(m => m.role === 'user')?.content
+      if (!lastUserMessage) {
+        return NextResponse.json({ error: 'No user message' }, { status: 400 })
+      }
+
+      const retrieval = await retrieveSupportContext(lastUserMessage, 4)
+      references = retrieval.references
+      response = await supportChatWithContext(messages, retrieval.chunks)
     }
 
-    return NextResponse.json({ response })
+    return NextResponse.json({ response, references })
   } catch (error) {
     console.error('Chat API error:', error)
     return NextResponse.json({ error: 'Failed to process request' }, { status: 500 })
