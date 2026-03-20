@@ -132,7 +132,7 @@ function Footer() {
               JR<span style={{ color: 'var(--red)' }}>Tools</span>USA
             </div>
             <div style={{ fontSize: '13px', color: '#556', lineHeight: 1.6, maxWidth: '220px' }}>
-              Dallas, TX. Unbeatable tool prices since 2018. Save up to 40%.
+              Alpharetta, GA. Unbeatable tool prices since 2018. Save up to 40%.
             </div>
             <div style={{ display: 'flex', gap: '8px', marginTop: '16px', flexWrap: 'wrap' }}>
               {['★ Tools for Less', '★ Ships Same Day', '★ 30-Day Returns'].map(b => (
@@ -151,7 +151,7 @@ function Footer() {
             { title: 'Shop', links: [{ label: 'All Tools', href: '/products' }, { label: 'Combo Kits', href: '/products' }, { label: 'New Arrivals', href: '/products' }, { label: 'Clearance', href: '/deals' }] },
             { title: 'Company', links: [{ label: 'About Us', href: '/about' }, { label: 'Brands', href: '/brands' }, { label: 'Deals', href: '/deals' }, { label: 'Careers', href: '#' }] },
             { title: 'Support', links: [{ label: 'Order Status', href: '/orders' }, { label: 'Shipping Info', href: '#' }, { label: 'FAQ', href: '#' }, { label: 'Contact Us', href: '#' }] },
-            { title: 'Contact', links: [{ label: '1-800-JR-TOOLS', href: 'tel:1-800-587-8657' }, { label: 'info@jrtoolsusa.com', href: 'mailto:info@jrtoolsusa.com' }, { label: 'Dallas, TX 75201', href: '#' }, { label: 'Mon–Fri 7am–6pm CT', href: '#' }] },
+            { title: 'Contact', links: [{ label: '1-800-JR-TOOLS', href: 'tel:1-800-587-8657' }, { label: 'info@jrtoolsusa.com', href: 'mailto:info@jrtoolsusa.com' }, { label: 'Alpharetta, GA 30009', href: '#' }, { label: 'Mon–Fri 7am–6pm CT', href: '#' }] },
           ].map(col => (
             <div key={col.title}>
               <div style={{
