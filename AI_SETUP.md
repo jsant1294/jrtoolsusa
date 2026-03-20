@@ -16,6 +16,11 @@ Create `.env.local` in the project root and add:
 GROQ_API_KEY=your_api_key_here
 ENABLE_PRODUCT_CHAT=false
 GROQ_CHAT_MODEL=llama-3.3-70b-versatile
+TWILIO_ACCOUNT_SID=
+TWILIO_AUTH_TOKEN=
+TWILIO_PHONE_NUMBER=
+TWILIO_INBOUND_WEBHOOK_URL=
+TWILIO_VERIFY_SIGNATURE=false
 ```
 
 Replace `your_api_key_here` with your actual Groq API key.
@@ -23,6 +28,7 @@ Replace `your_api_key_here` with your actual Groq API key.
 Set `ENABLE_PRODUCT_CHAT=false` while product data is being refreshed.
 Set `ENABLE_PRODUCT_CHAT=true` when you are ready to re-enable product recommendations in chat.
 `GROQ_CHAT_MODEL` lets you swap models without code changes.
+Set `TWILIO_VERIFY_SIGNATURE=true` in production after setting `TWILIO_INBOUND_WEBHOOK_URL`.
 
 ## Step 3: Install Dependencies
 
@@ -52,6 +58,9 @@ npm install groq-sdk
 - `POST /api/chat` - Main chat endpoint
   - Requires: `messages[]` and `mode` ('support' or 'product-search')
   - Returns: AI response text
+- `POST /api/twilio/inbound` - Twilio inbound SMS webhook
+  - Consumes Twilio form-encoded payloads
+  - Returns TwiML with an AI-generated reply grounded in support RAG context
 
 ## Notes
 
