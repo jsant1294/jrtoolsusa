@@ -93,7 +93,9 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             </div>
 
             {/* Add to Cart Button */}
-            <AddToCartSection product={product as any} />
+            <AddToCartSection product={product as anynow
+              
+            } />
 
             {/* Description */}
             <div style={{ borderTop: '1px solid #e8e4dc', paddingTop: '32px' }}>
