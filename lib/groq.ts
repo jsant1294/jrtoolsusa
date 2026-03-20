@@ -30,7 +30,11 @@ export function getGroqClient() {
 export async function searchProductsWithAI(query: string, products: any[]) {
   const groq = getGroqClient()
   const productList = products
-    .map(p => `${p.name} (${p.brand}, $${p.price})`)
+    .map(p => {
+      const stock = typeof p.stock === 'number' ? p.stock : 0
+      const availability = stock > 0 ? `In stock (${stock})` : 'Sold out'
+      return `${p.name} (${p.brand}, $${p.price}) - ${availability}`
+    })
     .join('\n')
 
   const response = await groq.chat.completions.create({
@@ -42,6 +46,12 @@ export async function searchProductsWithAI(query: string, products: any[]) {
         
 Available products:
 ${productList}
+
+Rules:
+- Use only the products listed above.
+- Availability is based only on the stock shown above.
+- If stock is 0, clearly say the item is sold out and suggest an alternative from the list.
+- Do not promise restock dates unless explicitly provided.
 
 When asked what tools a customer needs, recommend specific products from the list. Be concise and helpful.`,
       },
@@ -93,6 +103,7 @@ Key facts:
 Grounding rules:
 - Use the retrieved context below as your primary source.
 - If the answer is not in the retrieved context, say you are not fully sure and offer support contact details.
+- Do not promise inventory or in-stock status unless the retrieved context explicitly includes availability details.
 - Keep responses concise and practical.
 - When using retrieved info, cite the source number like [#1] in-line.
 

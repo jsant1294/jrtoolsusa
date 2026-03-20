@@ -33,7 +33,10 @@ export async function POST(req: NextRequest) {
 
       // Get products from Supabase
       const supabase = createServerClient()
-      const { data: products } = await supabase.from('products').select('*').eq('active', true).limit(20)
+      const { data: products } = await supabase
+        .from('products')
+        .select('name, brand, category, price, stock')
+        .limit(20)
 
       if (!products || products.length === 0) {
         response = 'No products available right now. Please try again later.'
@@ -47,7 +50,11 @@ export async function POST(req: NextRequest) {
         // Call Groq with product context
         const groq = getGroqClient()
         const productList = products
-          .map(p => `${p.name} (${p.brand}, $${p.price})`)
+          .map(p => {
+            const stock = typeof p.stock === 'number' ? p.stock : 0
+            const availability = stock > 0 ? `In stock (${stock})` : 'Sold out'
+            return `${p.name} (${p.brand}, ${p.category}, $${p.price}) - ${availability}`
+          })
           .join('\n')
 
         const result = await groq.chat.completions.create({
@@ -60,7 +67,13 @@ export async function POST(req: NextRequest) {
 Available products:
 ${productList}
 
-When asked what tools a customer needs, recommend specific products from the list. Be concise and helpful. Include product names and prices.`,
+Rules:
+- Use only the products listed above.
+- Availability is based only on the stock shown above.
+- If stock is 0, clearly say the item is sold out and suggest an alternative from the list.
+- Do not promise restock dates unless explicitly provided.
+
+When asked what tools a customer needs, recommend specific products from the list. Be concise and helpful. Include product names, prices, and availability.`,
             },
             {
               role: 'user',
