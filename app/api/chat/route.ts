@@ -6,6 +6,7 @@
 import { createServerClient } from '@/lib/supabase'
 import { getGroqClient, GROQ_CHAT_MODEL, supportChatWithContext } from '@/lib/groq'
 import { retrieveSupportContext } from '@/lib/support-rag'
+import { formatPrice } from '@/lib/cart'
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function POST(req: NextRequest) {
@@ -53,7 +54,7 @@ export async function POST(req: NextRequest) {
           .map(p => {
             const stock = typeof p.stock === 'number' ? p.stock : 0
             const availability = stock > 0 ? `In stock (${stock})` : 'Sold out'
-            return `${p.name} (${p.brand}, ${p.category}, $${p.price}) - ${availability}`
+            return `${p.name} (${p.brand}, ${p.category}, ${formatPrice(p.price)}) - ${availability}`
           })
           .join('\n')
 

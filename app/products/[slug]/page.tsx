@@ -2,6 +2,10 @@ import { createServerClient } from '@/lib/supabase'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import AddToCartSection from '@/components/AddToCartSection'
+import { formatPrice } from '@/lib/cart'
+import type { Product } from '@/types/product'
+
+export const revalidate = 0
 
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
@@ -74,7 +78,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
             {/* Price */}
             <div style={{ fontSize: '48px', fontWeight: 800, color: 'var(--navy)', marginBottom: '16px' }}>
-              ${(product.price / 100).toFixed(0)}
+              {formatPrice(product.price)}
             </div>
 
             {/* Stock Status */}
@@ -93,9 +97,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             </div>
 
             {/* Add to Cart Button */}
-            <AddToCartSection product={product as any
-              
-            } />
+            <AddToCartSection product={product as Product} />
 
             {/* Description */}
             <div style={{ borderTop: '1px solid #e8e4dc', paddingTop: '32px' }}>

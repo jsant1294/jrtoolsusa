@@ -105,7 +105,7 @@ export async function updateProduct(productId: string, data: {
     if (data.price !== undefined) {
       const { data: product } = await supabase
         .from('products')
-        .select('stripe_price_id, name, model')
+        .select('stripe_price_id, name, model, slug')
         .eq('id', productId)
         .single()
 
@@ -135,7 +135,7 @@ export async function updateProduct(productId: string, data: {
 
     revalidatePath('/admin/products')
     revalidatePath('/products')
-    revalidatePath(`/products/${productId}`)
+    revalidatePath('/products/[slug]', 'page')
     return { success: true }
   } catch (err: any) {
     return { success: false, error: err.message }

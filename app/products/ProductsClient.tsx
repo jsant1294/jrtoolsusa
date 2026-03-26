@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { createBrowserClient } from '@supabase/ssr'
 import Link from 'next/link'
+import { formatPrice } from '@/lib/cart'
 
 const BRANDS = ['Milwaukee', 'DeWalt', 'Makita', 'Bosch', 'Ridgid', 'Ryobi', 'Metabo']
 const CATEGORIES = [
@@ -149,7 +150,7 @@ export default function ProductsClient() {
                     <div style={{ fontSize: '12px', color: 'var(--mid)', marginBottom: '12px' }}>{p.model}{p.voltage ? ` · ${p.voltage}V` : ''}</div>
                   </div>
                   <div style={{ borderTop: '1px solid #f5f0e8', paddingTop: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
-                    <div style={{ fontSize: '22px', fontWeight: 800, color: 'var(--navy)' }}>${p.price}</div>
+                    <div style={{ fontSize: '22px', fontWeight: 800, color: 'var(--navy)' }}>{formatPrice(p.price)}</div>
                     {p.stock <= 5 && p.stock > 0 && <div style={{ fontSize: '11px', color: 'var(--red)', fontWeight: 600 }}>Only {p.stock} left</div>}
                     {p.stock === 0 && <div style={{ fontSize: '11px', color: '#999', fontWeight: 600 }}>Out of Stock</div>}
                   </div>

@@ -1,5 +1,6 @@
 import { createServerClient } from '@/lib/supabase'
 import Link from 'next/link'
+import { formatPrice } from '@/lib/cart'
 
 export default async function NewArrivalsPage() {
   const supabase = createServerClient()
@@ -43,7 +44,7 @@ export default async function NewArrivalsPage() {
                   <div style={{ fontSize: '12px', color: 'var(--mid)', marginBottom: '12px' }}>{p.model}{p.voltage ? ` · ${p.voltage}V` : ''}</div>
                 </div>
                 <div style={{ borderTop: '1px solid #f5f0e8', paddingTop: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
-                  <div style={{ fontSize: '22px', fontWeight: 800, color: 'var(--navy)' }}>${p.price}</div>
+                  <div style={{ fontSize: '22px', fontWeight: 800, color: 'var(--navy)' }}>{formatPrice(p.price)}</div>
                   {p.stock <= 5 && p.stock > 0 && <div style={{ fontSize: '11px', color: 'var(--red)', fontWeight: 600 }}>Only {p.stock} left</div>}
                 </div>
               </div>

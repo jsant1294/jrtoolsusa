@@ -4,11 +4,19 @@
  */
 
 import Groq from 'groq-sdk'
+import { formatPrice } from '@/lib/cart'
 import type { RetrievedSupportChunk } from '@/lib/support-rag'
 
 export const GROQ_CHAT_MODEL = process.env.GROQ_CHAT_MODEL || 'llama-3.3-70b-versatile'
 
 let groqClient: Groq | null = null
+
+type SearchProduct = {
+  name: string
+  brand: string
+  price: number
+  stock?: number | null
+}
 
 export function getGroqClient() {
   const apiKey = process.env.GROQ_API_KEY
@@ -27,13 +35,13 @@ export function getGroqClient() {
  * Search products using AI understanding
  * Works with natural language queries
  */
-export async function searchProductsWithAI(query: string, products: any[]) {
+export async function searchProductsWithAI(query: string, products: SearchProduct[]) {
   const groq = getGroqClient()
   const productList = products
     .map(p => {
       const stock = typeof p.stock === 'number' ? p.stock : 0
       const availability = stock > 0 ? `In stock (${stock})` : 'Sold out'
-      return `${p.name} (${p.brand}, $${p.price}) - ${availability}`
+      return `${p.name} (${p.brand}, ${formatPrice(p.price)}) - ${availability}`
     })
     .join('\n')
 
